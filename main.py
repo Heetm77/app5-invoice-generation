@@ -49,4 +49,25 @@ for filepath in filepaths:
         pdf.cell(w=30, h=8, txt=str(row["total_price"]), border=1, ln=1)
 
 
+    total_sum = sum(df["total_price"])
+    pdf.set_font(family="Times", style="B", size=10)
+    pdf.set_text_color(80, 80, 80)
+
+    # Usually we set the width to 0 to expand the entire horizontal length of the PDF document
+    pdf.cell(w=30, h=8, txt="", border=1)
+    pdf.cell(w=70, h=8, txt="", border=1)
+    pdf.cell(w=30, h=8, txt="", border=1)
+    pdf.cell(w=30, h=8, txt="", border=1)
+    pdf.cell(w=30, h=8, txt=str(total_sum), border=1, ln=1)
+
+    # Add total sum sentence
+    pdf.set_font(family="Times", style="B", size=10)
+    pdf.cell(w=30, h=8, txt=f"The total price is {total_sum} Euros", ln=1)
+
+    # Add company name and logo
+    pdf.set_font(family="Times", size=14, style="B")
+    pdf.cell(w=25, h=8, txt=f"PythonHow")
+    pdf.image("pythonhow.png", w=10)
+
+
     pdf.output(f"PDFs/{filename}.pdf")
